@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+     <title> perfumy </title>
+     <style>
+        .y{
+            color:white;
+            background-color: black;
+            height:40px;
+            padding-right:30%;
+        }
+        b{
+            font-size:30px;
+            padding-right:100%;
+        }
+        button{
+            margin:50px;
+            padding-right:80%;
+            width:70%;
+            height:30px;
+        }
+        .x{
+            display:inline-block;
+            border: 2px solid black;
+            width:300px;
+            height:300px;
+     }
+     .z{
+        width:180px;
+        height:180px;
+     }
+     h1{
+        padding-left:50%;
+     }
+  
+     </style>
+    </head>
+    <body>
+        <div class="y"><b>perfumy</b>Home|Products|About|Contact|</div>
+    <button> Search </button>
+    <center>
+    <div class="x">
+         <image src="2.2.jpg" class="z" > <h4>Graff300-carat gem, the Lesedi La Rona 100ml</h4></image>
+    </div>
+     <div class="x">
+         <image src="2.3.jpg" class="z"> <h4>Graffs 300-carat gem, the Lesedi La Rona 100ml</h4></image>
+    </div>
+    <div class="x">
+        <image src="2.4.jpg" class="z"> <h4>Graffs 300-carat gem, the Lesedi La Rona 100ml</h4></image>
+   </div>
+    </center>
+    <h1><b>AboutUs</b></h1>
+        </body>
+
+</html>
