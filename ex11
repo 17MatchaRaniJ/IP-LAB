@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+</head>
+<body>
+    <h2>User Registration</h2>
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        Username: <input type="text" name="username"><br><br>
+        Password: <input type="password" name="password"><br><br>
+        <input type="submit" name="submit" value="Register">
+    </form>
+
+    <?php
+    // Database connection
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "users";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Create table if it doesn't exist
+    $sql_create_table = "CREATE TABLE IF NOT EXISTS users (
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(50) NOT NULL,
+        password VARCHAR(255) NOT NULL
+    )";
+
+    if ($conn->query($sql_create_table) === TRUE) {
+        // Table created successfully
+    } else {
+        echo "Error creating table: " . $conn->error;
+    }
+
+    // Form submission
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        // Form validation
+        if (empty($username) || empty($password)) {
+            echo "Both username and password are required.";
+        } elseif (strlen($password) < 8) {
+            echo "Password must be at least 8 characters long.";
+        } else {
+            // Insert into database
+            $sql_insert = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+            if ($conn->query($sql_insert) === TRUE) {
+                echo "Registration successful!";
+            } else {
+                echo "Error: " . $sql_insert . "<br>" . $conn->error;
+            }
+        }
+    }
+
+    $conn->close();
+    ?>
+</body>
+</html>
