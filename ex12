@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+  <product>
+    <code>001</code>
+    <name>iPhone 14 pro</name>
+    <description>17.00 cm (6.7″) or
+15.54 cm (6.1″)
+Super Retina XDR display</description>
+    <price>129900</price>
+    <stock>40</stock>
+  </product>
+  <product>
+    <code>002</code>
+    <name>iPhone 14</name>
+    <description>16.95 cm (6.7″) or
+15.40 cm (6.1″)
+Super Retina XDR display</description>
+    <price>79900</price>
+    <stock>30</stock>
+  </product>
+  <product>
+    <code>003</code>
+    <name>iPhone 13</name>
+    <description>15.40 cm (6.1″) or 13.76 cm (5.4″)
+Super Retina XDR display</description>
+    <price>64900</price>
+    <stock>20</stock>
+  </product>
+  <product>
+    <code>004</code>
+    <name>iPhone</name>
+    <description> 11.94 cm (4.7") and Retina HD display</description>
+    <price>49900</price>
+    <stock>40</stock>
+  </product>
+</products>
+
+
+//html
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <script>
+    function fun()
+    {
+        let obj=new XMLHttpRequest();
+        let t1=document.getElementById("t1").value;
+        let test;
+        alert(t1);
+        obj.onreadystatechange = function()
+        {
+         if(obj.readyState==4 && obj.status==200)
+         {
+          let data = obj.responseXML;
+          let product = data.getElementsByTagName("product");
+          alert(product.length); 
+          for(i=0;i<product.length;i++)
+          {
+          if(t1.match(product[i].getElementsByTagName("code")[0].childNodes[0].nodeValue))
+          {
+            test = product[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+          }
+        }
+        document.getElementById("one").innerHTML =test;
+        }
+       
+       
+       }
+    obj.open("GET","sample.xml",true);
+    obj.send();
+}
+</script>
+    Code: <input type="text" id="t1"><br>
+    <button onclick="fun()">Click Here</button><br>
+    <div id="one"></div>
+</html>
